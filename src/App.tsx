@@ -14,7 +14,8 @@ import {
   useRegions,
   useDeliveryStats,
 } from './hooks/useOperationData';
-import { weatherEvents, metricsData } from './data/mockData';
+import { useWeatherData } from './hooks/useWeatherData';
+import { metricsData } from './data/mockData';
 import type { Alert, ConflictEvent, RiskLevel } from './types';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   const { deliveries, loading: deliveriesLoading } = useDeliveries();
   const { regions, loading: regionsLoading } = useRegions();
   const { stats: deliveryStats } = useDeliveryStats();
+  const { weatherEvents, loading: weatherLoading } = useWeatherData();
 
   const alerts: Alert[] = useMemo(() => {
     return dbAlerts.map((alert) => ({
@@ -84,7 +86,7 @@ function App() {
     };
   }, [conflicts]);
 
-  const isLoading = alertsLoading || conflictsLoading || vehiclesLoading || deliveriesLoading || regionsLoading;
+  const isLoading = alertsLoading || conflictsLoading || vehiclesLoading || deliveriesLoading || regionsLoading || weatherLoading;
 
   const updatedMetrics = useMemo(() => {
     if (!deliveryStats) return metricsData;
