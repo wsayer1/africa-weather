@@ -100,9 +100,9 @@ export function MapView({ conflictEvents, weatherEvents, vehicles = [], deliveri
 
       <Map
         initialViewState={{
-          latitude: 36.75,
-          longitude: 10.18,
-          zoom: 10,
+          latitude: 5.0,
+          longitude: 20.0,
+          zoom: 3,
         }}
         style={{ width: '100%', height: '100%' }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
