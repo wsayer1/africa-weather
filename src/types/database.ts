@@ -1,0 +1,337 @@
+export type Database = {
+  public: {
+    Tables: {
+      operations: {
+        Row: {
+          id: string;
+          name: string;
+          description: string | null;
+          status: 'planned' | 'active' | 'completed' | 'suspended';
+          start_date: string | null;
+          end_date: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          description?: string | null;
+          status?: 'planned' | 'active' | 'completed' | 'suspended';
+          start_date?: string | null;
+          end_date?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          description?: string | null;
+          status?: 'planned' | 'active' | 'completed' | 'suspended';
+          start_date?: string | null;
+          end_date?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      regions: {
+        Row: {
+          id: string;
+          operation_id: string;
+          name: string;
+          code: string;
+          latitude: number;
+          longitude: number;
+          risk_level: 'low' | 'medium' | 'high' | 'critical';
+          population: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          operation_id: string;
+          name: string;
+          code: string;
+          latitude: number;
+          longitude: number;
+          risk_level?: 'low' | 'medium' | 'high' | 'critical';
+          population?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          operation_id?: string;
+          name?: string;
+          code?: string;
+          latitude?: number;
+          longitude?: number;
+          risk_level?: 'low' | 'medium' | 'high' | 'critical';
+          population?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      vehicles: {
+        Row: {
+          id: string;
+          operation_id: string;
+          call_sign: string;
+          type: 'truck' | 'helicopter' | 'boat' | 'drone';
+          status: 'active' | 'idle' | 'maintenance' | 'emergency';
+          latitude: number;
+          longitude: number;
+          heading: number;
+          speed: number;
+          fuel_level: number;
+          cargo_capacity: number;
+          current_load: number;
+          driver_id: string | null;
+          last_update: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          operation_id: string;
+          call_sign: string;
+          type?: 'truck' | 'helicopter' | 'boat' | 'drone';
+          status?: 'active' | 'idle' | 'maintenance' | 'emergency';
+          latitude: number;
+          longitude: number;
+          heading?: number;
+          speed?: number;
+          fuel_level?: number;
+          cargo_capacity?: number;
+          current_load?: number;
+          driver_id?: string | null;
+          last_update?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          operation_id?: string;
+          call_sign?: string;
+          type?: 'truck' | 'helicopter' | 'boat' | 'drone';
+          status?: 'active' | 'idle' | 'maintenance' | 'emergency';
+          latitude?: number;
+          longitude?: number;
+          heading?: number;
+          speed?: number;
+          fuel_level?: number;
+          cargo_capacity?: number;
+          current_load?: number;
+          driver_id?: string | null;
+          last_update?: string;
+          created_at?: string;
+        };
+      };
+      deliveries: {
+        Row: {
+          id: string;
+          operation_id: string;
+          region_id: string | null;
+          vehicle_id: string | null;
+          status: 'pending' | 'in_transit' | 'delivered' | 'failed' | 'cancelled';
+          priority: 'low' | 'medium' | 'high' | 'critical';
+          cargo_type: 'food' | 'medical' | 'water' | 'shelter' | 'equipment' | 'mixed';
+          cargo_weight: number;
+          origin_latitude: number;
+          origin_longitude: number;
+          destination_latitude: number;
+          destination_longitude: number;
+          destination_name: string;
+          eta: string | null;
+          delivered_at: string | null;
+          notes: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          operation_id: string;
+          region_id?: string | null;
+          vehicle_id?: string | null;
+          status?: 'pending' | 'in_transit' | 'delivered' | 'failed' | 'cancelled';
+          priority?: 'low' | 'medium' | 'high' | 'critical';
+          cargo_type: 'food' | 'medical' | 'water' | 'shelter' | 'equipment' | 'mixed';
+          cargo_weight?: number;
+          origin_latitude: number;
+          origin_longitude: number;
+          destination_latitude: number;
+          destination_longitude: number;
+          destination_name: string;
+          eta?: string | null;
+          delivered_at?: string | null;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          operation_id?: string;
+          region_id?: string | null;
+          vehicle_id?: string | null;
+          status?: 'pending' | 'in_transit' | 'delivered' | 'failed' | 'cancelled';
+          priority?: 'low' | 'medium' | 'high' | 'critical';
+          cargo_type?: 'food' | 'medical' | 'water' | 'shelter' | 'equipment' | 'mixed';
+          cargo_weight?: number;
+          origin_latitude?: number;
+          origin_longitude?: number;
+          destination_latitude?: number;
+          destination_longitude?: number;
+          destination_name?: string;
+          eta?: string | null;
+          delivered_at?: string | null;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      alerts: {
+        Row: {
+          id: string;
+          operation_id: string;
+          region_id: string | null;
+          vehicle_id: string | null;
+          type: 'route_blocked' | 'weather' | 'security' | 'vehicle' | 'medical' | 'supply' | 'communication';
+          severity: 'info' | 'warning' | 'critical';
+          title: string;
+          message: string;
+          latitude: number | null;
+          longitude: number | null;
+          acknowledged: boolean;
+          acknowledged_by: string | null;
+          acknowledged_at: string | null;
+          resolved: boolean;
+          resolved_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          operation_id: string;
+          region_id?: string | null;
+          vehicle_id?: string | null;
+          type: 'route_blocked' | 'weather' | 'security' | 'vehicle' | 'medical' | 'supply' | 'communication';
+          severity?: 'info' | 'warning' | 'critical';
+          title: string;
+          message: string;
+          latitude?: number | null;
+          longitude?: number | null;
+          acknowledged?: boolean;
+          acknowledged_by?: string | null;
+          acknowledged_at?: string | null;
+          resolved?: boolean;
+          resolved_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          operation_id?: string;
+          region_id?: string | null;
+          vehicle_id?: string | null;
+          type?: 'route_blocked' | 'weather' | 'security' | 'vehicle' | 'medical' | 'supply' | 'communication';
+          severity?: 'info' | 'warning' | 'critical';
+          title?: string;
+          message?: string;
+          latitude?: number | null;
+          longitude?: number | null;
+          acknowledged?: boolean;
+          acknowledged_by?: string | null;
+          acknowledged_at?: string | null;
+          resolved?: boolean;
+          resolved_at?: string | null;
+          created_at?: string;
+        };
+      };
+      conflicts: {
+        Row: {
+          id: string;
+          operation_id: string;
+          region_id: string | null;
+          type: 'active_conflict' | 'roadblock' | 'checkpoint' | 'danger_zone' | 'natural_hazard' | 'infrastructure';
+          severity: 'low' | 'medium' | 'high' | 'critical';
+          latitude: number;
+          longitude: number;
+          radius: number;
+          description: string | null;
+          reported_by: string | null;
+          verified: boolean;
+          active: boolean;
+          expires_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          operation_id: string;
+          region_id?: string | null;
+          type: 'active_conflict' | 'roadblock' | 'checkpoint' | 'danger_zone' | 'natural_hazard' | 'infrastructure';
+          severity?: 'low' | 'medium' | 'high' | 'critical';
+          latitude: number;
+          longitude: number;
+          radius?: number;
+          description?: string | null;
+          reported_by?: string | null;
+          verified?: boolean;
+          active?: boolean;
+          expires_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          operation_id?: string;
+          region_id?: string | null;
+          type?: 'active_conflict' | 'roadblock' | 'checkpoint' | 'danger_zone' | 'natural_hazard' | 'infrastructure';
+          severity?: 'low' | 'medium' | 'high' | 'critical';
+          latitude?: number;
+          longitude?: number;
+          radius?: number;
+          description?: string | null;
+          reported_by?: string | null;
+          verified?: boolean;
+          active?: boolean;
+          expires_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+      user_profiles: {
+        Row: {
+          id: string;
+          user_id: string;
+          email: string;
+          full_name: string | null;
+          role: 'admin' | 'coordinator' | 'driver' | 'viewer';
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          email: string;
+          full_name?: string | null;
+          role?: 'admin' | 'coordinator' | 'driver' | 'viewer';
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          email?: string;
+          full_name?: string | null;
+          role?: 'admin' | 'coordinator' | 'driver' | 'viewer';
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+    };
+  };
+};
+
+export type Operation = Database['public']['Tables']['operations']['Row'];
+export type Region = Database['public']['Tables']['regions']['Row'];
+export type Vehicle = Database['public']['Tables']['vehicles']['Row'];
+export type Delivery = Database['public']['Tables']['deliveries']['Row'];
+export type Alert = Database['public']['Tables']['alerts']['Row'];
+export type Conflict = Database['public']['Tables']['conflicts']['Row'];
+export type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
