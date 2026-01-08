@@ -180,29 +180,33 @@ function ConflictSummaryCard({ conflicts }: { conflicts: { severity: string }[] 
   const lowCount = conflicts.filter(c => c.severity === 'low').length;
 
   return (
-    <div className="bg-control-base rounded-xl border border-control-border p-4">
-      <h3 className="text-sm font-semibold text-white mb-4">Conflict Summary</h3>
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-control-muted">Total Incidents</span>
-          <span className="text-2xl font-bold text-white">{conflicts.length}</span>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-control-surface/50 rounded-lg p-3">
-            <p className="text-xs text-control-muted mb-1">Critical</p>
-            <p className="text-lg font-semibold text-alert-critical">{criticalCount}</p>
+    <div className="bg-control-base rounded-xl border border-control-border overflow-hidden">
+      <div className="p-6 pb-4 border-b border-control-border/50">
+        <h3 className="text-base font-semibold text-white">Conflict Summary</h3>
+      </div>
+      <div className="p-6 pt-4">
+        <div className="space-y-6">
+          <div className="flex items-baseline justify-between">
+            <span className="text-sm font-medium text-control-muted">Total Incidents</span>
+            <span className="text-4xl font-bold text-white">{conflicts.length}</span>
           </div>
-          <div className="bg-control-surface/50 rounded-lg p-3">
-            <p className="text-xs text-control-muted mb-1">High</p>
-            <p className="text-lg font-semibold text-orange-500">{highCount}</p>
-          </div>
-          <div className="bg-control-surface/50 rounded-lg p-3">
-            <p className="text-xs text-control-muted mb-1">Moderate</p>
-            <p className="text-lg font-semibold text-alert-warning">{mediumCount}</p>
-          </div>
-          <div className="bg-control-surface/50 rounded-lg p-3">
-            <p className="text-xs text-control-muted mb-1">Low</p>
-            <p className="text-lg font-semibold text-alert-info">{lowCount}</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-control-surface/50 rounded-lg p-4 border border-alert-critical/20 hover:border-alert-critical/40 transition-colors">
+              <p className="text-xs font-medium text-control-muted mb-2">Critical</p>
+              <p className="text-2xl font-bold text-alert-critical">{criticalCount}</p>
+            </div>
+            <div className="bg-control-surface/50 rounded-lg p-4 border border-orange-500/20 hover:border-orange-500/40 transition-colors">
+              <p className="text-xs font-medium text-control-muted mb-2">High</p>
+              <p className="text-2xl font-bold text-orange-500">{highCount}</p>
+            </div>
+            <div className="bg-control-surface/50 rounded-lg p-4 border border-alert-warning/20 hover:border-alert-warning/40 transition-colors">
+              <p className="text-xs font-medium text-control-muted mb-2">Moderate</p>
+              <p className="text-2xl font-bold text-alert-warning">{mediumCount}</p>
+            </div>
+            <div className="bg-control-surface/50 rounded-lg p-4 border border-alert-info/20 hover:border-alert-info/40 transition-colors">
+              <p className="text-xs font-medium text-control-muted mb-2">Low</p>
+              <p className="text-2xl font-bold text-alert-info">{lowCount}</p>
+            </div>
           </div>
         </div>
       </div>

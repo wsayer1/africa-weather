@@ -54,28 +54,33 @@ export function DeliveryChart({ data }: DeliveryChartProps) {
   const target = data[0]?.target || 50000;
 
   return (
-    <div className="bg-control-base rounded-xl border border-control-border p-4">
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-            <TrendingUp size={16} className="text-alert-info" />
-            Food Delivery Volume
-          </h3>
-          <p className="text-xs text-control-muted mt-1">Last 30 days | Metric Tons (MT)</p>
-        </div>
-        <div className="flex items-center gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-0.5 bg-alert-info" />
-            <span className="text-control-muted">Actual</span>
+    <div className="bg-control-base rounded-xl border border-control-border overflow-hidden">
+      <div className="p-6 pb-4 border-b border-control-border/50">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-alert-info/20 flex items-center justify-center">
+              <TrendingUp size={20} className="text-alert-info" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold text-white">Food Delivery Volume</h3>
+              <p className="text-xs text-control-muted mt-0.5">Last 30 days | Metric Tons (MT)</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-0.5 bg-alert-warning border-dashed" style={{ borderTop: '1px dashed' }} />
-            <span className="text-control-muted">Target</span>
+          <div className="flex items-center gap-6 text-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-1 bg-alert-info rounded-full" />
+              <span className="text-control-muted">Actual</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-0.5 bg-alert-warning" style={{ borderTop: '2px dashed' }} />
+              <span className="text-control-muted">Target</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="h-48">
+      <div className="p-6 pt-4">
+        <div className="h-56">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}
@@ -136,13 +141,17 @@ export function DeliveryChart({ data }: DeliveryChartProps) {
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-3 pt-3 border-t border-control-border flex items-center justify-between text-xs">
-        <span className="text-control-muted">
-          30-day average: <span className="text-white font-medium">{Math.round(avgVolume).toLocaleString()} MT</span>
-        </span>
-        <span className={`${avgVolume >= target ? 'text-alert-success' : 'text-alert-warning'}`}>
-          {avgVolume >= target ? 'Meeting targets' : 'Below target average'}
-        </span>
+        <div className="mt-4 pt-4 border-t border-control-border flex items-center justify-between">
+          <div>
+            <p className="text-xs text-control-muted mb-1">30-day average</p>
+            <p className="text-lg font-bold text-white">{Math.round(avgVolume).toLocaleString()} <span className="text-sm font-normal text-control-muted">MT</span></p>
+          </div>
+          <div className={`px-4 py-2 rounded-lg ${avgVolume >= target ? 'bg-alert-success/20' : 'bg-alert-warning/20'}`}>
+            <span className={`text-sm font-medium ${avgVolume >= target ? 'text-alert-success' : 'text-alert-warning'}`}>
+              {avgVolume >= target ? 'Meeting targets' : 'Below target average'}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
