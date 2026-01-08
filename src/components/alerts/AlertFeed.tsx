@@ -26,7 +26,7 @@ export function AlertFeed({ alerts, isLoading }: AlertFeedProps) {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Bell size={16} className="text-alert-warning" />
-            <h2 className="text-sm font-semibold text-white">Live Alerts</h2>
+            <h2 className="text-sm font-semibold text-white">Real-time Alerts</h2>
           </div>
           {isLoading && (
             <Loader2 size={14} className="text-blue-400 animate-spin" />
