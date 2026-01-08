@@ -62,7 +62,7 @@ export function DeliveryChart({ data }: DeliveryChartProps) {
               <TrendingUp size={20} className="text-alert-info" />
             </div>
             <div>
-              <h3 className="text-base font-semibold text-white">Food Delivery Amount</h3>
+              <h3 className="text-base font-semibold text-white">Food Deliveries</h3>
               <p className="text-xs text-control-muted mt-0.5">Last 30 days | Metric Tons (MT)</p>
             </div>
           </div>
